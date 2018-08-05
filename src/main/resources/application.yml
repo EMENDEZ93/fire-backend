@@ -1,0 +1,20 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://ec2-50-17-250-38.compute-1.amazonaws.com:5432/dfvu2h6pug0v4p?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory
+    username: vidavwgiygmggw
+    password: 1b1055c065454ba4643e709af7c34d77cd8b53757e7272227dabc3e565e70567
+    driverClassName: org.postgresql.Driver
+    
+  jpa:
+    show-sql: true   
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true   
+      
+      
+       
