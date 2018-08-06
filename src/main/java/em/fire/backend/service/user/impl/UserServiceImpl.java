@@ -30,6 +30,16 @@ public class UserServiceImpl implements UserService{
 	public List<User> findAll() {
 		return userJpaRepository.findAll();
 	}
+
+	@Override
+	public boolean existsById(Long id) {	
+		return userJpaRepository.existsById(id);
+	}
+
+	@Override
+	public void deleteUserById(Long id) {
+		userJpaRepository.deleteById(id);
+	}
 	
 	
 }
