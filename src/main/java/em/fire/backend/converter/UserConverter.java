@@ -2,13 +2,10 @@ package em.fire.backend.converter;
 
 import org.springframework.stereotype.Component;
 
-import em.fire.backend.entity.User;
-import em.fire.backend.model.UserModel;
-
 @Component("userConverter")
 public class UserConverter {
 
-	public UserModel entityConvertToModel(User user) {
+	/*public UserModel entityConvertToModel(User user) {
 		UserModel userModel = new UserModel();
 		userModel.setId(user.getId());
 		userModel.setNombre(user.getNombre());
@@ -24,5 +21,5 @@ public class UserConverter {
 		user.setProfesion(userModel.getProfesion());
 		
 		return user;
-	}	
+	}*/	
 }

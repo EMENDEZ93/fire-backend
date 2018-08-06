@@ -37,7 +37,9 @@ public class UserController {
 	
 	@PostMapping("/user/save")
 	public User createUser(@Valid @RequestBody User user) {
-		return userService.save(user);
+		
+		return userService.createUser(user);
+	
 	}
 
 	@GetMapping("/users")
@@ -47,14 +49,7 @@ public class UserController {
 	
 	@DeleteMapping("/user/{id}/delete")
 	public boolean deleteUser(@PathVariable(value="id") Long id){	
-		
-		if(userService.existsById(id)){
-			userService.deleteUserById(id);
-			
-			return true;
-		}	
-		
-		return false;
+		return userService.deleteUserById(id);
 	}
 	
 }
