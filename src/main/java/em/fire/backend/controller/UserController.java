@@ -6,7 +6,9 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,11 +37,19 @@ public class UserController {
 	
 	@PostMapping("/user/save")
 	public User createUser(@Valid @RequestBody User user) {
-		return userService.save(user);
+		
+		return userService.createUser(user);
+	
 	}
 
 	@GetMapping("/users")
 	public List<User> allUser() {
 		return userService.findAll();
 	}
+	
+	@DeleteMapping("/user/{id}/delete")
+	public boolean deleteUser(@PathVariable(value="id") Long id){	
+		return userService.deleteUserById(id);
+	}
+	
 }
