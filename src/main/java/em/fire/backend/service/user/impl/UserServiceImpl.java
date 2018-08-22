@@ -23,9 +23,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User createUser(User user) {
-
 		return userJpaRepository.save(user);
-
 	}
 
 	@Override
@@ -46,6 +44,7 @@ public class UserServiceImpl implements UserService {
 
 			return true;
 		}
+		
 		return false;
 	}
 
