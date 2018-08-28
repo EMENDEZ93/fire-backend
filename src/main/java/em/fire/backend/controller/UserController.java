@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import em.fire.backend.component.UserComponent;
-import em.fire.backend.entity.User;
+import em.fire.backend.entity.user.User;
 import em.fire.backend.service.user.UserService;
 
 @RestController
@@ -28,7 +28,6 @@ public class UserController {
 	@Autowired
 	@Qualifier("userService")
 	private UserService userService;
-
 	
 	@RequestMapping("/")
 	public String fire() {
@@ -36,7 +35,7 @@ public class UserController {
 	}	
 	
 	@PostMapping("/user/save")
-	public User createUser(@Valid @RequestBody User user) {
+	public boolean createUser(@Valid @RequestBody User user) {
 		return userService.createUser(user);	
 	}
 
@@ -48,6 +47,16 @@ public class UserController {
 	@DeleteMapping("/user/{id}/delete")
 	public boolean deleteUser(@PathVariable(value="id") Long id){	
 		return userService.deleteUserById(id);
+	}
+	
+	@GetMapping("/user/{phone}")
+	public User getUser(@PathVariable(value="phone") Long phone){	
+		return userService.getUserByPhone(phone);
+	}
+
+	@GetMapping("/exist/{phone}")
+	public boolean existUserPhone(@PathVariable(value="phone") Long phone){	
+		return userService.existsUserPhone(phone);
 	}
 	
 }

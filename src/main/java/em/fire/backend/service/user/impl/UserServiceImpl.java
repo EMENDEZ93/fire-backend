@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import em.fire.backend.entity.User;
+import em.fire.backend.entity.user.User;
 import em.fire.backend.repository.UserDSLRepository;
-import em.fire.backend.repository.UserJpaRepository;
+import em.fire.backend.repository.user.UserJpaRepository;
 import em.fire.backend.service.user.UserService;
 
 @Service("userService")
@@ -22,8 +22,13 @@ public class UserServiceImpl implements UserService {
 	private UserDSLRepository userDSLRepository;
 
 	@Override
-	public User createUser(User user) {
-		return userJpaRepository.save(user);
+	public boolean createUser(User user) {
+		boolean existsUser = existsUserPhone(user.getPhone());
+
+		if (existsUser == false) {
+			userJpaRepository.save(user);
+		}
+		return existsUser;
 	}
 
 	@Override
@@ -44,8 +49,18 @@ public class UserServiceImpl implements UserService {
 
 			return true;
 		}
-		
+
 		return false;
+	}
+
+	@Override
+	public User getUserByPhone(long phone) {
+		return userDSLRepository.getUserByPhone(phone);
+	}
+
+	@Override
+	public boolean existsUserPhone(Long phone) {
+		return (userDSLRepository.getUserByPhone(phone) != null);
 	}
 
 }

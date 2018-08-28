@@ -1,4 +1,4 @@
-package em.fire.backend.model;
+package em.fire.backend.model.user;
 
 public class User {
 

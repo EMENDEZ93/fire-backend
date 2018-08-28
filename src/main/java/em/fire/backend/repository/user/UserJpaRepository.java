@@ -1,6 +1,6 @@
-package em.fire.backend.repository;
+package em.fire.backend.repository.user;
 
-import em.fire.backend.entity.User;
+import em.fire.backend.entity.user.User;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;

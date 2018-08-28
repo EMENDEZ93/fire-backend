@@ -1,4 +1,4 @@
-package em.fire.backend.entity;
+package em.fire.backend.entity.user;
 
 import java.io.Serializable;
 
@@ -20,7 +20,7 @@ public class User implements Serializable {
 	@Column(name = "id")
 	private Long id;
 
-	private String nombre;
+	private String name;
 
 	@NotNull
 	private Long phone;
@@ -28,9 +28,9 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(Long id, String nombre, Long phone) {
+	public User(Long id, String name, Long phone) {
 		this.id = id;
-		this.nombre = nombre;
+		this.name = name;
 		this.phone = phone;
 	}
 
@@ -51,11 +51,11 @@ public class User implements Serializable {
 	}
 
 	public String getNombre() {
-		return nombre;
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombre(String name) {
+		this.name = name;
 	}
 
 }

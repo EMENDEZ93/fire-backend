@@ -4,11 +4,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
-
 import com.querydsl.jpa.impl.JPAQuery;
-
-import em.fire.backend.entity.QUser;
-import em.fire.backend.entity.User;
+import em.fire.backend.entity.user.QUser;
+import em.fire.backend.entity.user.User;
 
 @Repository("userDSLRepository")
 public class UserDSLRepository {
@@ -18,12 +16,11 @@ public class UserDSLRepository {
 	@PersistenceContext
 	private EntityManager entityManager; 
 
-	public User find() {
 		
+	public User getUserByPhone(long phone) {	
 		JPAQuery<User> query = new JPAQuery<User>(entityManager);
-		
-		return query.select(qUser).from(qUser).where(qUser.id.eq((long) 1)).fetchOne();
-		
+		return query.select(qUser).from(qUser).where(qUser.phone.eq((long) phone)).fetchOne();
 	}
+	
 	
 }
