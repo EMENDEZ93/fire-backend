@@ -1,6 +1,7 @@
 package em.fire.backend.service.user.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,13 +23,8 @@ public class UserServiceImpl implements UserService {
 	private UserDSLRepository userDSLRepository;
 
 	@Override
-	public boolean createUser(User user) {
-		boolean existsUser = existsUserPhone(user.getPhone());
-
-		if (existsUser == false) {
-			userJpaRepository.save(user);
-		}
-		return existsUser;
+	public User createUser(User user) {
+		return userJpaRepository.save(user);
 	}
 
 	@Override
@@ -42,15 +38,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean deleteUserById(Long id) {
-
-		if (userJpaRepository.existsById(id)) {
-			userJpaRepository.deleteById(id);
-
-			return true;
-		}
-
-		return false;
+	public boolean deleteUser(Long id) {
+		userJpaRepository.deleteById(id);
+		return true;
 	}
 
 	@Override
@@ -61,6 +51,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean existsUserPhone(Long phone) {
 		return (userDSLRepository.getUserByPhone(phone) != null);
+	}
+
+	@Override
+	public User getUser(long id) {
+		return userJpaRepository.getOne(id);
+	}
+
+	@Override
+	public User updateUser(User user) {
+		return userJpaRepository.save(user);
 	}
 
 }

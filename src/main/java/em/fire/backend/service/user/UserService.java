@@ -6,11 +6,15 @@ import em.fire.backend.entity.user.User;
 
 public interface UserService {
 
-	public boolean createUser(User user);
+	public User createUser(User user);
+	
+	public User updateUser(User user);
+		
+	public User getUser(long id);
 	
 	public List<User> findAll();
 
-	public boolean deleteUserById(Long id);
+	public boolean deleteUser(Long id);
 	
 	public boolean existsById(Long id);
 	

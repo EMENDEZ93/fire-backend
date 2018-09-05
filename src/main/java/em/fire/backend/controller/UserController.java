@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +36,15 @@ public class UserController {
 	}	
 	
 	@PostMapping("/user/save")
-	public boolean createUser(@Valid @RequestBody User user) {
+	public User createUser(@Valid @RequestBody User user) {
 		return userService.createUser(user);	
 	}
 
+	@PutMapping("/user/update")
+	public User updateUser(@Valid @RequestBody User user) {
+		return userService.updateUser(user);	
+	}	
+	
 	@GetMapping("/users")
 	public List<User> allUser() {
 		return userService.findAll();
@@ -46,7 +52,7 @@ public class UserController {
 	
 	@DeleteMapping("/user/{id}/delete")
 	public boolean deleteUser(@PathVariable(value="id") Long id){	
-		return userService.deleteUserById(id);
+		return userService.deleteUser(id);
 	}
 	
 	@GetMapping("/user/{phone}")
