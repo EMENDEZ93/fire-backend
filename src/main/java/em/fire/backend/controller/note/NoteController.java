@@ -37,7 +37,7 @@ public class NoteController {
 	}	
 	
 	@CrossOrigin(origins = "*")
-	@DeleteMapping("/note/{id}/delete")
+	@GetMapping("/note/{id}/delete")
 	public boolean deleteNote(@PathVariable(value="id") Long id) {
 		return noteService.deleteNoteById(id);
 	}
