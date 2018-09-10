@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,22 +24,25 @@ public class NoteController {
 	@Qualifier("noteService")
 	private NoteService noteService;
 	
-	
+	@CrossOrigin(origins = "*")
 	@PostMapping("/note/save")
 	public boolean createUser(@Valid @RequestBody Note note) {
 		return noteService.createNote(note);
 	}
 
+	@CrossOrigin(origins = "*")
 	@GetMapping("/notes")
 	public List<Note> allNotes() {
 		return noteService.findAll();
 	}	
 	
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/note/{id}/delete")
 	public boolean deleteNote(@PathVariable(value="id") Long id) {
 		return noteService.deleteNoteById(id);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/note/{id}")
 	public Note getNote(@PathVariable(value="id") Long id) {
 		return noteService.getNoteById(id);
