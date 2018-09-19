@@ -16,16 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import em.fire.backend.component.UserComponent;
 import em.fire.backend.entity.user.User;
 import em.fire.backend.service.user.UserService;
 
 @RestController
 public class UserController {
-
-	@Autowired
-	@Qualifier("userComponent")
-	private UserComponent userComponent;
 
 	@Autowired
 	@Qualifier("userService")
@@ -60,11 +55,6 @@ public class UserController {
 	@GetMapping("/user/{phone}")
 	public User getUser(@PathVariable(value="phone") Long phone){	
 		return userService.getUserByPhone(phone);
-	}
-
-	@GetMapping("/exist/{phone}")
-	public boolean existUserPhone(@PathVariable(value="phone") Long phone){	
-		return userService.existsUserPhone(phone);
 	}
 	
 }

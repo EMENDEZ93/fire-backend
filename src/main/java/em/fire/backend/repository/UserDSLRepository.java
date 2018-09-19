@@ -17,9 +17,9 @@ public class UserDSLRepository {
 	private EntityManager entityManager; 
 
 		
-	public User getUserByPhone(long phone) {	
+	public User getUserByEmail(String email) {	
 		JPAQuery<User> query = new JPAQuery<User>(entityManager);
-		return query.select(qUser).from(qUser).where(qUser.phone.eq((long) phone)).fetchOne();
+		return query.select(qUser).from(qUser).where(qUser.email.eq((String) email)).fetchOne();
 	}
 	
 	

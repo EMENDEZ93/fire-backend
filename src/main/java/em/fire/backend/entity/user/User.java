@@ -31,22 +31,10 @@ public class User implements Serializable {
 	private String name;
 
 	@NotNull
-	private Long phone;
+	private String email;
 
-	@OneToMany(mappedBy="user", fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	private List<Note> notes;
-
-	public User() {
-		notes = new ArrayList<>();
-	}
-
-	public Long getPhone() {
-		return phone;
-	}
-
-	public void setPhone(Long phone) {
-		this.phone = phone;
-	}
+	@NotNull
+	private String id_firebase;
 
 	public Long getId() {
 		return id;
@@ -56,24 +44,28 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getNombre() {
+	public String getName() {
 		return name;
 	}
 
-	public void setNombre(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
 
-	public List<Note> getNotes() {
-		return notes;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setNotes(List<Note> notes) {
-		this.notes = notes;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public void addNote(Note note) {
-		this.notes.add(note);
+	public String getId_firebase() {
+		return id_firebase;
 	}
-	
+
+	public void setId_firebase(String id_firebase) {
+		this.id_firebase = id_firebase;
+	}
+
 }

@@ -1,8 +1,6 @@
 package em.fire.backend.service.user.impl;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -44,16 +42,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User getUserByPhone(long phone) {
-		return userDSLRepository.getUserByPhone(phone);
-	}
-
-	@Override
-	public boolean existsUserPhone(Long phone) {
-		return (userDSLRepository.getUserByPhone(phone) != null);
-	}
-
-	@Override
 	public User getUser(long id) {
 		return userJpaRepository.getOne(id);
 	}
@@ -61,6 +49,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public User updateUser(User user) {
 		return userJpaRepository.save(user);
+	}
+
+	@Override
+	public User getUserByPhone(long phone) {
+		return null;
+	}
+
+	@Override
+	public boolean getUserByEmail(String email) {
+		return false;
 	}
 
 }
