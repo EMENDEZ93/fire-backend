@@ -30,7 +30,7 @@ public class Note implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
 
-	@JsonFormat(pattern = "KK:mm a")
+	@JsonFormat(pattern = "HH:mm")
 	private LocalTime startTime;
 
 	@PrePersist
@@ -42,7 +42,7 @@ public class Note implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 
-	@JsonFormat(pattern = "KK:mm a")
+	@JsonFormat(pattern = "HH:mm")
 	private LocalTime endTime;
 
 	@NotNull
