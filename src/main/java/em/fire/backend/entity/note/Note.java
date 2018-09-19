@@ -1,8 +1,7 @@
 package em.fire.backend.entity.note;
 
 import java.io.Serializable;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -15,9 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "notes")
@@ -31,32 +28,22 @@ public class Note implements Serializable {
 	private Long Id;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "start_date")
 	private Date startDate;
 
-	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(iso = ISO.TIME)
-	@Column(name = "start_time")
-	private Date startTime;	
-	
+	@JsonFormat(pattern = "KK:mm a")
+	private LocalTime startTime;
+
 	@PrePersist
 	public void prePersist() {
 		startDate = new Date();
-		try {
-			startTime = new SimpleDateFormat("HH:mm").parse("15:30");
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
+		startTime = LocalTime.now();
 	}
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "end_date")
 	private Date endDate;
 
-	@Temporal(TemporalType.TIME)
-	@DateTimeFormat(iso = ISO.TIME)
-	@Column(name = "end_time")
-	private Date endTime;
+	@JsonFormat(pattern = "KK:mm a")
+	private LocalTime endTime;
 
 	@NotNull
 	private String title;
@@ -65,7 +52,7 @@ public class Note implements Serializable {
 
 	@NotNull
 	private String idFirebase;
-	
+
 	public Long getId() {
 		return Id;
 	}
@@ -90,11 +77,11 @@ public class Note implements Serializable {
 		this.endDate = endDate;
 	}
 
-	public Date getEndTime() {
+	public LocalTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(LocalTime endTime) {
 		this.endTime = endTime;
 	}
 
@@ -122,11 +109,11 @@ public class Note implements Serializable {
 		this.idFirebase = idFirebase;
 	}
 
-	public Date getStartTime() {
+	public LocalTime getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(LocalTime startTime) {
 		this.startTime = startTime;
 	}
 
