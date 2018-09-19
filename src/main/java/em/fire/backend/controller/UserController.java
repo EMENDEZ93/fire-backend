@@ -37,21 +37,25 @@ public class UserController {
 		return userService.createUser(user);	
 	}
 
+	@CrossOrigin(origins = "*")
 	@PutMapping("/user/update")
 	public User updateUser(@Valid @RequestBody User user) {
 		return userService.updateUser(user);	
 	}	
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/users")
 	public List<User> allUser() {
 		return userService.findAll();
 	}
 	
+	@CrossOrigin(origins = "*")
 	@DeleteMapping("/user/{id}/delete")
 	public boolean deleteUser(@PathVariable(value="id") Long id){	
 		return userService.deleteUser(id);
 	}
 	
+	@CrossOrigin(origins = "*")
 	@GetMapping("/user/{phone}")
 	public User getUser(@PathVariable(value="phone") Long phone){	
 		return userService.getUserByPhone(phone);

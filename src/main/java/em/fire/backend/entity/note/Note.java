@@ -1,25 +1,23 @@
 package em.fire.backend.entity.note;
 
 import java.io.Serializable;
-import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
-
-import em.fire.backend.entity.user.User;
 
 @Entity
 @Table(name = "notes")
@@ -36,9 +34,19 @@ public class Note implements Serializable {
 	@Column(name = "start_date")
 	private Date startDate;
 
+	@Temporal(TemporalType.TIME)
+	@DateTimeFormat(iso = ISO.TIME)
+	@Column(name = "start_time")
+	private Date startTime;	
+	
 	@PrePersist
 	public void prePersist() {
 		startDate = new Date();
+		try {
+			startTime = new SimpleDateFormat("HH:mm").parse("15:30");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Temporal(TemporalType.DATE)
@@ -50,11 +58,14 @@ public class Note implements Serializable {
 	@Column(name = "end_time")
 	private Date endTime;
 
+	@NotNull
+	private String title;
+
 	private String description;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	private User user;
-
+	@NotNull
+	private String idFirebase;
+	
 	public Long getId() {
 		return Id;
 	}
@@ -83,8 +94,16 @@ public class Note implements Serializable {
 		return endTime;
 	}
 
-	public void setEndTime(Time endTime) {
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getDescription() {
@@ -95,12 +114,20 @@ public class Note implements Serializable {
 		this.description = description;
 	}
 
-	public User getUser() {
-		return user;
+	public String getIdFirebase() {
+		return idFirebase;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setIdFirebase(String idFirebase) {
+		this.idFirebase = idFirebase;
+	}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
 	}
 
 }
