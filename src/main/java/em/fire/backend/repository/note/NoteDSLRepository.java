@@ -1,5 +1,7 @@
 package em.fire.backend.repository.note;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -22,5 +24,10 @@ public class NoteDSLRepository {
 		JPAQuery<Note> query = new JPAQuery<Note>(entityManager);
 		return query.select(qNote).from(qNote).where(qNote.Id.eq((long) id)).fetchOne();
 	}
+
+	public List<Note> getNotesByIdFirebase(String idFirebase) {	
+		JPAQuery<Note> query = new JPAQuery<Note>(entityManager);
+		return (List<Note>) query.from(qNote).where(qNote.idFirebase.eq(idFirebase)).fetch();
+	}	
 	
 }

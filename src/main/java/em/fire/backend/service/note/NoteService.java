@@ -14,4 +14,6 @@ public interface NoteService {
 	
 	public Note getNoteById(Long id);
 	
+	public List<Note> getNotesByIdFirebase(String idFirebase);
+	
 }

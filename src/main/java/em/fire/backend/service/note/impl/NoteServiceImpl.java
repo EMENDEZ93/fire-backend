@@ -14,7 +14,6 @@ import em.fire.backend.service.note.NoteService;
 @Service("noteService")
 public class NoteServiceImpl implements NoteService {
 
-	
 	@Autowired
 	@Qualifier("noteJpaRepository")
 	private NoteJpaRepository noteJpaRepository; 
@@ -50,6 +49,11 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public Note getNoteById(Long id) {
 		return noteDSLRepository.getNoteById(id);
+	}
+
+	@Override
+	public List<Note> getNotesByIdFirebase(String idFirebase) {
+		return noteDSLRepository.getNotesByIdFirebase(idFirebase);
 	} 
 	
 }
