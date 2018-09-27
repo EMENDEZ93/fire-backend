@@ -15,4 +15,6 @@ public interface FriendService {
 	public List<Friend> getFindFriendRequestsByRequested(String requested);
 	
 	public Friend getFindFriendRequestById(Long id);
+	
+	public Friend getChangeFriendRequestStatusById(Long id);
 }

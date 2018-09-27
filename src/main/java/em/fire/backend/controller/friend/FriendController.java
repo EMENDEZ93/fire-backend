@@ -53,4 +53,10 @@ public class FriendController {
 		return friendService.getFindFriendRequestById(id);
 	}	
 	
+	@CrossOrigin(origins = "*")
+	@GetMapping("get/change/friend/request/status/{id}")
+	public Friend getChangeFriendRequestStatusById(@PathVariable(value="id") Long id) {
+		return friendService.getChangeFriendRequestStatusById(id);
+	}
+	
 }
