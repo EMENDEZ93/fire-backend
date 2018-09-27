@@ -12,4 +12,7 @@ public interface FriendService {
 	
 	public List<Friend> getFindFriendRequestsByRequester(String requester);
 	
+	public List<Friend> getFindFriendRequestsByRequested(String requested);
+	
+	public Friend getFindFriendRequestById(Long id);
 }

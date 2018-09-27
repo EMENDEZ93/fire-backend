@@ -2,6 +2,7 @@ package em.fire.backend.entity.friend;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +16,10 @@ public class Friend implements Serializable {
 
 	private static final long serialVersionUID = -5596321336021120799L;
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	@Column(name = "id")
+	private Long id;
 	
 	@NotNull
 	private String requester;

@@ -35,6 +35,16 @@ public class FriendServiceImpl implements FriendService {
 	@Override
 	public List<Friend> getFindFriendRequestsByRequester(String requester) {
 		return friendDSLRepository.getFindFriendRequestsByRequester(requester);
+	}
+
+	@Override
+	public List<Friend> getFindFriendRequestsByRequested(String requested) {
+		return friendDSLRepository.getFindFriendRequestsByrequested(requested);
+	}
+
+	@Override
+	public Friend getFindFriendRequestById(Long id) {
+		return friendDSLRepository.getFindFriendRequestById(id);
 	} 
 		
 }

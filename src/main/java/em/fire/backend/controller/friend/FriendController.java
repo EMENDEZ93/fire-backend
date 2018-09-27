@@ -36,9 +36,21 @@ public class FriendController {
 	}	
 
 	@CrossOrigin(origins = "*")
-	@GetMapping("get/friends/requests/{requester}")
+	@GetMapping("get/friends/requests/requester/{requester}")
 	public List<Friend> getFriendRequestsByRequester(@PathVariable(value="requester") String requester ) {
 		return friendService.getFindFriendRequestsByRequester(requester);
 	}
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("get/friends/requests/requested/{requested}")
+	public List<Friend> getFriendRequestsByRequested(@PathVariable(value="requested") String requested ) {
+		return friendService.getFindFriendRequestsByRequested(requested);
+	}	
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("get/friends/request/{id}")
+	public Friend getFriendRequestById(@PathVariable(value="id") Long id) {
+		return friendService.getFindFriendRequestById(id);
+	}	
 	
 }
