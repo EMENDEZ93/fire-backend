@@ -17,4 +17,7 @@ public interface FriendService {
 	public Friend getFindFriendRequestById(Long id);
 	
 	public Friend getChangeFriendRequestStatusById(Long id);
+	
+	public void deleteFriendRequestById(Long id);
+
 }

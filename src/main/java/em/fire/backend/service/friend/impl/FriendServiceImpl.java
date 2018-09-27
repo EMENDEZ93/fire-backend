@@ -52,6 +52,11 @@ public class FriendServiceImpl implements FriendService {
 		Friend friend = friendDSLRepository.getFindFriendRequestById(id);
 		friend.setRequestStatus(!friend.isRequestStatus());	
 		return friendJpaRepository.save(friend);
-	}	
+	}
+
+	@Override
+	public void deleteFriendRequestById(Long id) {
+		friendJpaRepository.deleteById(id);
+	}
 	
 }
