@@ -57,8 +57,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean getUserByEmail(String email) {
-		return false;
+	public List<User> getUserByEmailOrName(String emailOrName) {
+		return userDSLRepository.getUserByEmailOrName(emailOrName);
 	}
 
 }

@@ -1,5 +1,7 @@
 package em.fire.backend.repository;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -17,9 +19,10 @@ public class UserDSLRepository {
 	private EntityManager entityManager; 
 
 		
-	public User getUserByEmail(String email) {	
+	public List<User> getUserByEmailOrName(String emailOrName) {	
 		JPAQuery<User> query = new JPAQuery<User>(entityManager);
-		return query.select(qUser).from(qUser).where(qUser.email.eq((String) email)).fetchOne();
+		return query.select(qUser).from(qUser).where(qUser.email.contains((String) emailOrName)
+				.or(qUser.name.contains((String) emailOrName))).fetch();
 	}
 	
 	

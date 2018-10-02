@@ -60,5 +60,11 @@ public class UserController {
 	public User getUser(@PathVariable(value="phone") Long phone){	
 		return userService.getUserByPhone(phone);
 	}
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("/get/find/friends/{emailOrName}")
+	public List<User> getUserByEmailOrName(@PathVariable(value="emailOrName") String emailOrName) {
+		return userService.getUserByEmailOrName(emailOrName);
+	}	
 	
 }

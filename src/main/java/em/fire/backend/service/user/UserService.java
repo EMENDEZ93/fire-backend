@@ -20,6 +20,6 @@ public interface UserService {
 	
 	public User getUserByPhone(long phone);
 
-	public boolean getUserByEmail(String email);
+	public List<User> getUserByEmailOrName(String emailOrName);
 	
 }
