@@ -9,30 +9,30 @@ import org.springframework.stereotype.Repository;
 
 import com.querydsl.jpa.impl.JPAQuery;
 
-import em.fire.backend.entity.friend.Friend;
-import em.fire.backend.entity.friend.QFriend;
+import em.fire.backend.entity.friend.FriendEntity;
+import em.fire.backend.entity.friend.QFriendEntity;;
 
 @Repository("friendDSLRepository")
 public class FriendDSLRepository {
 
-	private QFriend qFriend = QFriend.friend; 
+	private QFriendEntity qFriendEntity = QFriendEntity.friendEntity; 
 	
 	@PersistenceContext
 	private EntityManager entityManager; 
 	
-	public List<Friend> getFindFriendRequestsByRequester(String requester){
-		JPAQuery<Friend> query = new JPAQuery<Friend>(entityManager);
-		return query.from(qFriend).where(qFriend.requester.eq(requester)).fetch();
+	public List<FriendEntity> getFindFriendRequestsByRequester(String requester){
+		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
+		return query.from(qFriendEntity).where(qFriendEntity.requester.email.eq(requester)).fetch();
 	}
 
-	public List<Friend> getFindFriendRequestsByrequested(String requested){
-		JPAQuery<Friend> query = new JPAQuery<Friend>(entityManager);
-		return query.from(qFriend).where(qFriend.requested.eq(requested)).fetch();
+	public List<FriendEntity> getFindFriendRequestsByrequested(String requested){
+		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
+		return query.from(qFriendEntity).where(qFriendEntity.requested.email.eq(requested)).fetch();
 	}	
 
-	public Friend getFindFriendRequestById(Long id){
-		JPAQuery<Friend> query = new JPAQuery<Friend>(entityManager);
-		return query.from(qFriend).where(qFriend.id.eq(id)).fetchOne();
+	public FriendEntity getFindFriendRequestById(Long id){
+		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
+		return query.from(qFriendEntity).where(qFriendEntity.id.eq(id)).fetchOne();
 	}
 	
 }

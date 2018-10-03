@@ -2,21 +2,22 @@ package em.fire.backend.service.friend;
 
 import java.util.List;
 
-import em.fire.backend.entity.friend.Friend;
+import em.fire.backend.domain.friend.Friend;
+import em.fire.backend.entity.friend.FriendEntity;
 
 public interface FriendService {
 
-	public Friend postFriend(Friend friend);
+	public FriendEntity postFriend(Friend friend);
 	
-	public List<Friend> getFindFriendRequestsAll();
+	public List<FriendEntity> getFindFriendRequestsAll();
 	
-	public List<Friend> getFindFriendRequestsByRequester(String requester);
+	public List<FriendEntity> getFindFriendRequestsByRequester(String requester);
 	
-	public List<Friend> getFindFriendRequestsByRequested(String requested);
+	public List<FriendEntity> getFindFriendRequestsByRequested(String requested);
 	
-	public Friend getFindFriendRequestById(Long id);
+	public FriendEntity getFindFriendRequestById(Long id);
 	
-	public Friend getChangeFriendRequestStatusById(Long id);
+	public FriendEntity getChangeFriendRequestStatusById(Long id);
 	
 	public void deleteFriendRequestById(Long id);
 

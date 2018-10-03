@@ -17,13 +17,16 @@ public class UserDSLRepository {
 	
 	@PersistenceContext
 	private EntityManager entityManager; 
-
 		
 	public List<User> getUserByEmailOrName(String emailOrName) {	
 		JPAQuery<User> query = new JPAQuery<User>(entityManager);
 		return query.select(qUser).from(qUser).where(qUser.email.contains((String) emailOrName)
 				.or(qUser.name.contains((String) emailOrName))).fetch();
 	}
-	
+
+	public User getUserByEmail(String email) {	
+		JPAQuery<User> query = new JPAQuery<User>(entityManager);
+		return query.select(qUser).from(qUser).where(qUser.email.eq((String) email)).fetchOne();
+	}	
 	
 }
