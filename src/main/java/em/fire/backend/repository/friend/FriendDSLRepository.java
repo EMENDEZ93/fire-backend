@@ -22,12 +22,12 @@ public class FriendDSLRepository {
 	
 	public List<FriendEntity> getFindFriendRequestsByRequester(String requester){
 		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
-		return query.from(qFriendEntity).where(qFriendEntity.requester.email.eq(requester)).fetch();
+		return query.from(qFriendEntity).where(qFriendEntity.requester.eq(requester)).fetch();
 	}
 
 	public List<FriendEntity> getFindFriendRequestsByrequested(String requested){
 		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
-		return query.from(qFriendEntity).where(qFriendEntity.requested.email.eq(requested)).fetch();
+		return query.from(qFriendEntity).where(qFriendEntity.requested.eq(requested)).fetch();
 	}	
 
 	public FriendEntity getFindFriendRequestById(Long id){

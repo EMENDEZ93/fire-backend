@@ -10,8 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import em.fire.backend.entity.user.User;
-
 @Entity
 @Table(name = "friends_entity")
 public class FriendEntity implements Serializable {
@@ -23,11 +21,11 @@ public class FriendEntity implements Serializable {
 	@Column(name = "id")
 	private Long id;
 
-	@NotNull	
-	private User requester;
+	@NotNull
+	private String requester;
 
 	@NotNull
-	private User requested;
+	private String requested;
 
 	private boolean requestStatus;
 
@@ -39,19 +37,19 @@ public class FriendEntity implements Serializable {
 		this.id = id;
 	}
 
-	public User getRequester() {
+	public String getRequester() {
 		return requester;
 	}
 
-	public void setRequester(User requester) {
+	public void setRequester(String requester) {
 		this.requester = requester;
 	}
 
-	public User getRequested() {
+	public String getRequested() {
 		return requested;
 	}
 
-	public void setRequested(User requested) {
+	public void setRequested(String requested) {
 		this.requested = requested;
 	}
 

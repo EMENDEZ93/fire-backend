@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import em.fire.backend.domain.friend.Friend;
 import em.fire.backend.entity.friend.FriendEntity;
-import em.fire.backend.entity.user.User;
 import em.fire.backend.repository.UserDSLRepository;
 import em.fire.backend.repository.friend.FriendDSLRepository;
 import em.fire.backend.repository.friend.FriendJpaRepository;
@@ -70,11 +69,8 @@ public class FriendServiceImpl implements FriendService {
 	private FriendEntity buildFriendEntity(Friend friend) {
 		FriendEntity friendEntity = new FriendEntity();
 
-		User requester = userDSLRepository.getUserByEmail(friend.getRequester());
-		User requested = userDSLRepository.getUserByEmail(friend.getRequested());
-		
-		friendEntity.setRequester(requester);
-		friendEntity.setRequested(requested);
+		friendEntity.setRequested(friend.getRequested());
+		friendEntity.setRequester(friend.getRequester());
 		
 		return friendEntity;
 	}	
