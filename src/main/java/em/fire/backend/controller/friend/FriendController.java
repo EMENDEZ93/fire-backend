@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import em.fire.backend.domain.friend.Friend;
 import em.fire.backend.entity.friend.FriendEntity;
+import em.fire.backend.entity.user.User;
 import em.fire.backend.service.friend.FriendService;
 
 @RestController
@@ -66,5 +67,10 @@ public class FriendController {
 	public void deleteFriendRequestById(@PathVariable(value="id") Long id) {
 		friendService.deleteFriendRequestById(id);
 	}	
-	
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("get/all/friends/by/requester/email/{email}")	
+	public List<User> getAllFriendByRequesterEmail(@PathVariable(value="email") String email){
+		return friendService.getAllFriendByRequesterEmail(email);
+	}
 }

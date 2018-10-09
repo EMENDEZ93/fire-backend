@@ -1,5 +1,8 @@
 package em.fire.backend.service.friend.impl;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import em.fire.backend.domain.friend.Friend;
 import em.fire.backend.entity.friend.FriendEntity;
+import em.fire.backend.entity.user.User;
 import em.fire.backend.repository.UserDSLRepository;
 import em.fire.backend.repository.friend.FriendDSLRepository;
 import em.fire.backend.repository.friend.FriendJpaRepository;
@@ -21,13 +25,13 @@ public class FriendServiceImpl implements FriendService {
 	private FriendJpaRepository friendJpaRepository;
 
 	@Autowired
-	@Qualifier("friendDSLRepository")	
+	@Qualifier("friendDSLRepository")
 	private FriendDSLRepository friendDSLRepository;
 
 	@Autowired
 	@Qualifier("userDSLRepository")
-	private UserDSLRepository userDSLRepository;	
-	
+	private UserDSLRepository userDSLRepository;
+
 	@Override
 	public FriendEntity postFriend(Friend friend) {
 		FriendEntity friendEntity = buildFriendEntity(friend);
@@ -52,12 +56,12 @@ public class FriendServiceImpl implements FriendService {
 	@Override
 	public FriendEntity getFindFriendRequestById(Long id) {
 		return friendDSLRepository.getFindFriendRequestById(id);
-	} 
+	}
 
 	@Override
 	public FriendEntity getChangeFriendRequestStatusById(Long id) {
 		FriendEntity friend = friendDSLRepository.getFindFriendRequestById(id);
-		friend.setRequestStatus(!friend.isRequestStatus());	
+		friend.setRequestStatus(!friend.isRequestStatus());
 		return friendJpaRepository.save(friend);
 	}
 
@@ -71,8 +75,31 @@ public class FriendServiceImpl implements FriendService {
 
 		friendEntity.setRequested(friend.getRequested());
 		friendEntity.setRequester(friend.getRequester());
-		
+
 		return friendEntity;
-	}	
-	
+	}
+
+	@Override
+	public List<User> getAllFriendByRequesterEmail(String email) {
+
+		List<FriendEntity> friendEntities = friendDSLRepository.getFindFriendRequestsByRequester(email);
+		List<User> users = new ArrayList<>();
+
+		/*
+		 * for(FriendEntity friendEntity: friendEntities) {
+		 * if(userDSLRepository.existsByEmail(friendEntity.getRequested())) {
+		 * users.add(userDSLRepository.getUserByEmail(friendEntity.getRequested())); } }
+		 */
+
+		friendEntities.stream().forEach(friendEntity -> {
+
+			if (userDSLRepository.existsByEmail(friendEntity.getRequested())) {
+				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequested()));
+			}
+
+		});
+
+		return users;
+	}
+
 }

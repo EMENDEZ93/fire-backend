@@ -18,6 +18,8 @@ public interface UserService {
 	
 	public boolean existsById(Long id);
 	
+	public boolean existsByEmail(String email);
+	
 	public User getUserByPhone(long phone);
 
 	public List<User> getUserByEmailOrName(String emailOrName);

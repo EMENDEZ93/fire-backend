@@ -28,5 +28,10 @@ public class UserDSLRepository {
 		JPAQuery<User> query = new JPAQuery<User>(entityManager);
 		return query.select(qUser).from(qUser).where(qUser.email.eq((String) email)).fetchOne();
 	}	
+
+	public boolean existsByEmail(String email) {	
+		JPAQuery<User> query = new JPAQuery<User>(entityManager);
+		return (query.from(qUser).where(qUser.email.eq((String) email)).fetchOne() !=null) ;
+	}
 	
 }

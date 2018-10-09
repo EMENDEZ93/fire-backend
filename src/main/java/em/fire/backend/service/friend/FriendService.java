@@ -4,10 +4,13 @@ import java.util.List;
 
 import em.fire.backend.domain.friend.Friend;
 import em.fire.backend.entity.friend.FriendEntity;
+import em.fire.backend.entity.user.User;
 
 public interface FriendService {
 
 	public FriendEntity postFriend(Friend friend);
+	
+	public List<User> getAllFriendByRequesterEmail(String email);
 	
 	public List<FriendEntity> getFindFriendRequestsAll();
 	

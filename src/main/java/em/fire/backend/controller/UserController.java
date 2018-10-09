@@ -67,4 +67,10 @@ public class UserController {
 		return userService.getUserByEmailOrName(emailOrName);
 	}	
 	
+	@CrossOrigin(origins = "*")
+	@GetMapping("get/exist/user/{email}")
+	public boolean getExistsByEmail(@PathVariable(value="email") String email) {
+		return userService.existsByEmail(email);
+	}
+	
 }

@@ -61,4 +61,9 @@ public class UserServiceImpl implements UserService {
 		return userDSLRepository.getUserByEmailOrName(emailOrName);
 	}
 
+	@Override
+	public boolean existsByEmail(String email) {
+		return userDSLRepository.existsByEmail(email);
+	}
+
 }
