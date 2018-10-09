@@ -23,5 +23,7 @@ public interface FriendService {
 	public FriendEntity getChangeFriendRequestStatusById(Long id);
 	
 	public void deleteFriendRequestById(Long id);
+	
+	public boolean existFriendRecordRequesterAndRequested(String requestedEmail, String requesterEmail);
 
 }

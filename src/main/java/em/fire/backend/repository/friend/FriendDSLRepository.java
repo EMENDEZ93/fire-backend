@@ -34,5 +34,11 @@ public class FriendDSLRepository {
 		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
 		return query.from(qFriendEntity).where(qFriendEntity.id.eq(id)).fetchOne();
 	}
+
+	public boolean existFriendRecordRequesterAndRequested(String requestedEmail, String requesterEmail){
+		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
+		return (query.from(qFriendEntity).where(qFriendEntity.requested.eq(requestedEmail).and(qFriendEntity.requester.eq(requesterEmail))
+				.or(qFriendEntity.requested.eq(requesterEmail).and(qFriendEntity.requester.eq(requestedEmail)))).fetchOne() != null) ;
+	}	
 	
 }

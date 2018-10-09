@@ -1,7 +1,5 @@
 package em.fire.backend.service.friend.impl;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.xpath;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +32,12 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public FriendEntity postFriend(Friend friend) {
-		FriendEntity friendEntity = buildFriendEntity(friend);
-		return friendJpaRepository.save(friendEntity);
+		if (!friendDSLRepository.existFriendRecordRequesterAndRequested(friend.getRequested(), friend.getRequester())) {
+
+			FriendEntity friendEntity = buildFriendEntity(friend);
+			return friendJpaRepository.save(friendEntity);
+		}
+		return null;
 	}
 
 	@Override
@@ -81,25 +83,25 @@ public class FriendServiceImpl implements FriendService {
 
 	@Override
 	public List<User> getAllFriendByRequesterEmail(String email) {
+		List<User> users = getFindByUserEmail(email);
+		return users;
+	}
 
+	private List<User> getFindByUserEmail(String email) {
 		List<FriendEntity> friendEntities = friendDSLRepository.getFindFriendRequestsByRequester(email);
 		List<User> users = new ArrayList<>();
 
-		/*
-		 * for(FriendEntity friendEntity: friendEntities) {
-		 * if(userDSLRepository.existsByEmail(friendEntity.getRequested())) {
-		 * users.add(userDSLRepository.getUserByEmail(friendEntity.getRequested())); } }
-		 */
-
 		friendEntities.stream().forEach(friendEntity -> {
-
 			if (userDSLRepository.existsByEmail(friendEntity.getRequested())) {
 				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequested()));
 			}
-
 		});
-
 		return users;
+	}
+
+	@Override
+	public boolean existFriendRecordRequesterAndRequested(String requested, String requester) {
+		return friendDSLRepository.existFriendRecordRequesterAndRequested(requested, requester);
 	}
 
 }
