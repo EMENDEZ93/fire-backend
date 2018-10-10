@@ -64,9 +64,8 @@ public class UserController {
 	@CrossOrigin(origins = "*")
 	@GetMapping("/get/find/friends/{emailOrName}/requester/email/except/{requesterEmailExcept}")
 	public List<User> getUserByEmailOrName(@PathVariable(value="emailOrName") String emailOrName,
-			@PathVariable(value="requesterEmailExcept") String requesterEmailExcept) {
-		
-		return userService.getUserByEmailOrName(emailOrName, "emendez@unac.edu.co");
+			@PathVariable(value="requesterEmailExcept") String requesterEmailExcept) {	
+		return userService.getUserByEmailOrName(emailOrName, requesterEmailExcept);
 	}	
 	
 	@CrossOrigin(origins = "*")
