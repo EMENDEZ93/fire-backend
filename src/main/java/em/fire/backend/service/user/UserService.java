@@ -22,6 +22,6 @@ public interface UserService {
 	
 	public User getUserByPhone(long phone);
 
-	public List<User> getUserByEmailOrName(String emailOrName);
+	public List<User> getUserByEmailOrName(String emailOrName, String requesterEmailExcept);
 	
 }

@@ -24,6 +24,14 @@ public class UserDSLRepository {
 				.or(qUser.name.contains((String) emailOrName))).fetch();
 	}
 
+	public List<User> getUserByEmailOrName(String emailOrName, List<String> exceptEmails) {	
+		JPAQuery<User> query = new JPAQuery<User>(entityManager);
+		return query.select(qUser).from(qUser).where(qUser.email.notIn(exceptEmails).
+				and(qUser.email.contains((String) emailOrName)
+				.or(qUser.name.contains((String) emailOrName)))).fetch();
+	}
+	
+	
 	public User getUserByEmail(String email) {	
 		JPAQuery<User> query = new JPAQuery<User>(entityManager);
 		return query.select(qUser).from(qUser).where(qUser.email.eq((String) email)).fetchOne();
