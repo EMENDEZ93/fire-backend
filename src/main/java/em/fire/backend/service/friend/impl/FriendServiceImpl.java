@@ -98,10 +98,29 @@ public class FriendServiceImpl implements FriendService {
 		});
 		return users;
 	}
-
+	
 	@Override
 	public boolean existFriendRecordRequesterAndRequested(String requested, String requester) {
 		return friendDSLRepository.existFriendRecordRequesterAndRequested(requested, requester);
 	}
 
+	@Override
+	public List<User> getAllFriendByRequesterEmailAndStatusIsTrue(String email) {
+		List<User> users = getFindByUserRequesterEmailAndStatusIsTrue(email);
+		return users;	
+	}
+
+	private List<User> getFindByUserRequesterEmailAndStatusIsTrue(String email) {
+		List<FriendEntity> friendEntities = friendDSLRepository.getFindFriendRequestsByRequesterAndStatusIsTrue(email);
+		List<User> users = new ArrayList<>();
+
+		friendEntities.stream().forEach(friendEntity -> {
+			if (userDSLRepository.existsByEmail(friendEntity.getRequested())) {
+				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequested()));
+			}
+		});
+		
+		return users;
+	}	
+	
 }

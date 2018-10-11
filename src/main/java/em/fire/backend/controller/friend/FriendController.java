@@ -73,6 +73,12 @@ public class FriendController {
 	public List<User> getAllFriendByRequesterEmail(@PathVariable(value="email") String email){
 		return friendService.getAllFriendByRequesterEmail(email);
 	}
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("get/all/friends/by/requester/email/{email}/status/is/true")	
+	public List<User> getAllFriendByRequesterEmailAndStatusIsTrue(@PathVariable(value="email") String email){
+		return friendService.getAllFriendByRequesterEmailAndStatusIsTrue(email);
+	}
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("get/exist/friend/record/requester/{requesterEmail}/requested/{requestedEmail}")	
