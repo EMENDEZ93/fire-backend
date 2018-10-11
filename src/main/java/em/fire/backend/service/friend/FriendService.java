@@ -14,6 +14,8 @@ public interface FriendService {
 	
 	public List<User> getAllFriendByRequesterEmailAndStatusIsTrue(String email);
 	
+	public List<User> getAllFriendByRequesterEmailAndStatusIsFalse(String email);
+	
 	public List<FriendEntity> getFindFriendRequestsAll();
 	
 	public List<FriendEntity> getFindFriendRequestsByRequester(String requester);
