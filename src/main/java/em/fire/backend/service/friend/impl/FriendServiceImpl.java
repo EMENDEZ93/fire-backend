@@ -152,7 +152,7 @@ public class FriendServiceImpl implements FriendService {
 	public boolean deleteFriendRecordRequesterAndRequested(String requestedEmail, String requesterEmail) {
 		if(friendDSLRepository.existFriendRecordRequesterAndRequested(requestedEmail, requesterEmail)) {
 			friendDSLRepository.deleteFriendRecordRequesterAndRequested(requestedEmail, requesterEmail);
-			
+			return true;
 		}
 		return false;
 	}
