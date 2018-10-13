@@ -3,6 +3,8 @@ package em.fire.backend.service.friend.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -141,6 +143,18 @@ public class FriendServiceImpl implements FriendService {
 		});
 		
 		return users;
+	}
+
+
+	
+	@Override
+	@Transactional
+	public boolean deleteFriendRecordRequesterAndRequested(String requestedEmail, String requesterEmail) {
+		if(friendDSLRepository.existFriendRecordRequesterAndRequested(requestedEmail, requesterEmail)) {
+			friendDSLRepository.deleteFriendRecordRequesterAndRequested(requestedEmail, requesterEmail);
+			
+		}
+		return false;
 	}
 
 }

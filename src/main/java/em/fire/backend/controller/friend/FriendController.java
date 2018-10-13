@@ -93,4 +93,11 @@ public class FriendController {
 		return friendService.existFriendRecordRequesterAndRequested(requestedEmail, requesterEmail);
 	}
 
+	@CrossOrigin(origins = "*")
+	@DeleteMapping("delete/friend/record/requester/{requesterEmail}/requested/{requestedEmail}")
+	public boolean deleteFriendRecordRequesterAndRequested(@PathVariable(value = "requesterEmail") String requesterEmail,
+			@PathVariable(value = "requestedEmail") String requestedEmail) {
+		return friendService.deleteFriendRecordRequesterAndRequested(requestedEmail, requesterEmail);
+	}	
+	
 }

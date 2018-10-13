@@ -28,6 +28,8 @@ public interface FriendService {
 	
 	public void deleteFriendRequestById(Long id);
 	
+	public boolean deleteFriendRecordRequesterAndRequested(String requestedEmail, String requesterEmail);
+	
 	public boolean existFriendRecordRequesterAndRequested(String requestedEmail, String requesterEmail);
 
 }
