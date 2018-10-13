@@ -62,6 +62,12 @@ public class FriendController {
 		return friendService.getChangeFriendRequestStatusById(id);
 	}
 
+	/*@CrossOrigin(origins = "*")
+	@GetMapping("get/change/friend/request/status/for/requested/{requestedEmail}/requester/{requesterEmail}")
+	public FriendEntity getChangeFriendRequestStatusById(@PathVariable(value = "id") Long id) {
+		return friendService.getChangeFriendRequestStatusById(id);
+	}*/
+	
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("delete/friend/request/{id}")
 	public void deleteFriendRequestById(@PathVariable(value = "id") Long id) {
@@ -86,6 +92,12 @@ public class FriendController {
 		return friendService.getAllFriendByRequesterEmailAndStatusIsFalse(email);
 	}
 
+	@CrossOrigin(origins = "*")
+	@GetMapping("get/all/friends/by/requested/email/{email}/status/is/false")
+	public List<User> getAllFriendByRequestedEmailAndStatusIsFalse(@PathVariable(value = "email") String email) {
+		return friendService.getAllFriendByRequestedEmailAndStatusIsFalse(email);
+	}	
+	
 	@CrossOrigin(origins = "*")
 	@GetMapping("get/exist/friend/record/requester/{requesterEmail}/requested/{requestedEmail}")
 	public boolean existFriendRecordRequesterAndRequested(@PathVariable(value = "requesterEmail") String requesterEmail,

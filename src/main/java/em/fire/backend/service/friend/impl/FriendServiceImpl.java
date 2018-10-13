@@ -157,4 +157,23 @@ public class FriendServiceImpl implements FriendService {
 		return false;
 	}
 
+	@Override
+	public List<User> getAllFriendByRequestedEmailAndStatusIsFalse(String email) {
+		List<User> users = getFindByUserRequestedEmailAndStatusIsFalse(email);
+		return users;
+	}
+
+	private List<User> getFindByUserRequestedEmailAndStatusIsFalse(String email) {
+		List<FriendEntity> friendEntities = friendDSLRepository.getFindFriendRequestsByRequestedAndStatusIsFalse(email);
+		List<User> users = new ArrayList<>();
+
+		friendEntities.stream().forEach(friendEntity -> {
+			if (userDSLRepository.existsByEmail(friendEntity.getRequester())) {
+				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequester()));
+			}
+		});
+		
+		return users;
+	}
+	
 }
