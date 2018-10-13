@@ -68,4 +68,9 @@ public class FriendDSLRepository {
 						.and(qFriendEntity.requester.eq(requesterEmail))).execute();
 	}
 
+	public FriendEntity getChangeFriendRequestStatusByRequestedAndRequester(String requested, String requester) {
+		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
+		return query.from(qFriendEntity).where(qFriendEntity.requested.eq(requested).and(qFriendEntity.requester.eq(requester))).fetchOne();
+	}
+	
 }

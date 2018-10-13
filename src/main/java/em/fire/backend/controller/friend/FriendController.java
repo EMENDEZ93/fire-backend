@@ -62,11 +62,12 @@ public class FriendController {
 		return friendService.getChangeFriendRequestStatusById(id);
 	}
 
-	/*@CrossOrigin(origins = "*")
+	@CrossOrigin(origins = "*")
 	@GetMapping("get/change/friend/request/status/for/requested/{requestedEmail}/requester/{requesterEmail}")
-	public FriendEntity getChangeFriendRequestStatusById(@PathVariable(value = "id") Long id) {
-		return friendService.getChangeFriendRequestStatusById(id);
-	}*/
+	public FriendEntity getChangeFriendRequestStatusByRequestedAndRequester(@PathVariable(value = "requestedEmail") String requestedEmail,
+			@PathVariable(value = "requesterEmail") String requesterEmail ) {
+		return friendService.getChangeFriendRequestStatusByRequestedAndRequester(requestedEmail, requesterEmail);
+	}
 	
 	@CrossOrigin(origins = "*")
 	@DeleteMapping("delete/friend/request/{id}")

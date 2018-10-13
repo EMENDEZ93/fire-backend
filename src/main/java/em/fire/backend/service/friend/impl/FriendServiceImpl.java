@@ -175,5 +175,12 @@ public class FriendServiceImpl implements FriendService {
 		
 		return users;
 	}
+
+	@Override
+	public FriendEntity getChangeFriendRequestStatusByRequestedAndRequester(String requested, String requester) {
+		FriendEntity friend = friendDSLRepository.getChangeFriendRequestStatusByRequestedAndRequester(requested, requester);
+		friend.setRequestStatus(!friend.isRequestStatus());
+		return friendJpaRepository.save(friend);
+	}
 	
 }
