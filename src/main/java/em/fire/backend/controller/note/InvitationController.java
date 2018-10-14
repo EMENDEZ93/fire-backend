@@ -26,7 +26,7 @@ public class InvitationController {
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/post/invitation")
-	public InvitationEntity createUser(@Valid @RequestBody InvitationEntity invitation) {
+	public InvitationEntity postInvitation(@Valid @RequestBody InvitationEntity invitation) {
 		return invitationService.postInvitation(invitation);
 	}	
 	
