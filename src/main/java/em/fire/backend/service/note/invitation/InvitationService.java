@@ -4,6 +4,7 @@ import java.util.List;
 
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
+import em.fire.backend.entity.user.User;
 
 public interface InvitationService {
 
@@ -16,5 +17,7 @@ public interface InvitationService {
 	public boolean getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail);
 
 	public List<Note> getPendingInvitationsToNotesByGuest(String guestEmail);
+	
+	public List<User> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail);
 	
 }

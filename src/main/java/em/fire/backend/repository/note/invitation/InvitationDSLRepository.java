@@ -31,6 +31,11 @@ public class InvitationDSLRepository {
 		JPAQuery<InvitationEntity> query = new JPAQuery<InvitationEntity>(entityManager);
 		return (List<InvitationEntity>) query.from(qInvitationEntity)
 					.where(qInvitationEntity.guest.eq(guestEmail).and(qInvitationEntity.status.isFalse())).fetch();
+	}
+
+	public List<String> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail) {
+		JPAQuery<InvitationEntity> query = new JPAQuery<InvitationEntity>(entityManager);
+		return query.select(qInvitationEntity.guest).from(qInvitationEntity).where(qInvitationEntity.idNote.eq(noteId).and(qInvitationEntity.host.eq(hostEmail))).fetch();
 	}  
 
 	

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
+import em.fire.backend.entity.user.User;
 import em.fire.backend.service.note.invitation.InvitationService;
 
 @RestController
@@ -55,4 +56,11 @@ public class InvitationController {
 	public List<Note> getPendingInvitationsToNotesByGuest(@PathVariable(value="guestEmail") String guestEmail) {
 		return invitationService.getPendingInvitationsToNotesByGuest(guestEmail);
 	}
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("/get/all/guests/by/notesid/{noteId}/and/host/{hostEmail}")
+	public List<User> getAllGuestsByNoteIdAndHost(@PathVariable(value="noteId") Long noteId, @PathVariable(value="hostEmail") String hostEmail) {
+		return invitationService.getAllGuestsByNoteIdAndHost(noteId, hostEmail);
+	}
+	
 }

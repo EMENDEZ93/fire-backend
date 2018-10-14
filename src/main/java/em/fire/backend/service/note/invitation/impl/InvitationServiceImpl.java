@@ -9,10 +9,12 @@ import org.springframework.stereotype.Service;
 
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
+import em.fire.backend.entity.user.User;
 import em.fire.backend.repository.note.invitation.InvitationDSLRepository;
 import em.fire.backend.repository.note.invitation.InvitationJpaRepository;
 import em.fire.backend.service.note.NoteService;
 import em.fire.backend.service.note.invitation.InvitationService;
+import em.fire.backend.service.user.UserService;
 
 @Service("invitationService")
 public class InvitationServiceImpl implements InvitationService {
@@ -28,6 +30,10 @@ public class InvitationServiceImpl implements InvitationService {
 	@Autowired
 	@Qualifier("noteService")
 	private NoteService noteService;
+
+	@Autowired
+	@Qualifier("userService")
+	private UserService userService;
 	
 	
 	@Override
@@ -64,6 +70,15 @@ public class InvitationServiceImpl implements InvitationService {
 		});
 		
 		return pendingInvitationsToNote;
+	}
+
+	@Override
+	public List<User> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail) {
+		List<User> users = new ArrayList<>();
+		invitationDSLRepository.getAllGuestsByNoteIdAndHost(noteId, hostEmail).stream().forEach(guestEmail -> {
+			users.add( this.userService.getUserByEmail(guestEmail) );
+		});
+		return users;
 	}
 
 }
