@@ -41,4 +41,11 @@ public class InvitationController {
 	public boolean deleteInvitation(@PathVariable(value="id") Long id) {
 		return invitationService.deleteInvitation(id);
 	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/get/invitation/status/by/noteid/{noteId}/and/guest/{guestEmail}")
+	public boolean getInvitationStatusByNoteIdAndGuest(@PathVariable(value="noteId") Long noteId,
+			@PathVariable(value="guestEmail") String guestEmail) {
+		return invitationService.getInvitationStatusByNoteIdAndGuest(noteId, guestEmail);
+	}
 }

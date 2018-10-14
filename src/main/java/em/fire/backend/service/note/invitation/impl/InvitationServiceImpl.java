@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import em.fire.backend.entity.note.invitation.InvitationEntity;
+import em.fire.backend.repository.note.invitation.InvitationDSLRepository;
 import em.fire.backend.repository.note.invitation.InvitationJpaRepository;
 import em.fire.backend.service.note.invitation.InvitationService;
 
@@ -17,7 +18,10 @@ public class InvitationServiceImpl implements InvitationService {
 	@Qualifier("invitationJpaRepository")
 	private InvitationJpaRepository invitationJpaRepository;
 
-	
+	@Autowired
+	@Qualifier("invitationDSLRepository")
+	private InvitationDSLRepository invitationDSLRepository;
+
 	@Override
 	public InvitationEntity postInvitation(InvitationEntity invitation) {
 		return invitationJpaRepository.save(invitation);
@@ -30,14 +34,18 @@ public class InvitationServiceImpl implements InvitationService {
 
 	@Override
 	public boolean deleteInvitation(Long id) {
-		
-		if(invitationJpaRepository.existsById(id)) {
+
+		if (invitationJpaRepository.existsById(id)) {
 			invitationJpaRepository.deleteById(id);
 			return true;
 		}
-		
+
 		return false;
 	}
 
+	@Override
+	public boolean getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail) {
+		return invitationDSLRepository.getInvitationStatusByNoteIdAndGuest(noteId, guestEmail);
+	}
 
 }

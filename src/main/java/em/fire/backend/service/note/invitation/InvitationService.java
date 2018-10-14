@@ -12,4 +12,5 @@ public interface InvitationService {
 	
 	public boolean deleteInvitation(Long id);
 	
+	public boolean getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail);
 }
