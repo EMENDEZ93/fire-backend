@@ -32,6 +32,12 @@ public class FriendDSLRepository {
 				.where(qFriendEntity.requester.eq(requester).and(qFriendEntity.requestStatus.isTrue())).fetch();
 	}
 
+	public List<FriendEntity> getFindFriendRequestsByRequestedAndStatusIsTrue(String requested) {
+		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
+		return query.from(qFriendEntity)
+				.where(qFriendEntity.requested.eq(requested).and(qFriendEntity.requestStatus.isTrue())).fetch();
+	}	
+	
 	public List<FriendEntity> getFindFriendRequestsByRequesterAndStatusIsFalse(String requester) {
 		JPAQuery<FriendEntity> query = new JPAQuery<FriendEntity>(entityManager);
 		return query.from(qFriendEntity)

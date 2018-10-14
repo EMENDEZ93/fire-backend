@@ -113,14 +113,21 @@ public class FriendServiceImpl implements FriendService {
 	}
 
 	private List<User> getFindByUserRequesterEmailAndStatusIsTrue(String email) {
-		List<FriendEntity> friendEntities = friendDSLRepository.getFindFriendRequestsByRequesterAndStatusIsTrue(email);
+		List<FriendEntity> friendEntitiesAsRequester = friendDSLRepository.getFindFriendRequestsByRequesterAndStatusIsTrue(email);
+		List<FriendEntity> friendEntitiesAsRequested = friendDSLRepository.getFindFriendRequestsByRequestedAndStatusIsTrue(email);
 		List<User> users = new ArrayList<>();
 
-		friendEntities.stream().forEach(friendEntity -> {
+		friendEntitiesAsRequester.stream().forEach(friendEntity -> {
 			if (userDSLRepository.existsByEmail(friendEntity.getRequested())) {
 				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequested()));
 			}
 		});
+
+		friendEntitiesAsRequested.stream().forEach(friendEntity -> {
+			if (userDSLRepository.existsByEmail(friendEntity.getRequester())) {
+				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequester()));
+			}
+		});		
 		
 		return users;
 	}
