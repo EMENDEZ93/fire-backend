@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
 import em.fire.backend.service.note.invitation.InvitationService;
 
@@ -47,5 +48,11 @@ public class InvitationController {
 	public boolean getInvitationStatusByNoteIdAndGuest(@PathVariable(value="noteId") Long noteId,
 			@PathVariable(value="guestEmail") String guestEmail) {
 		return invitationService.getInvitationStatusByNoteIdAndGuest(noteId, guestEmail);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/get/pending/invitations/to/notes/by/guest/{guestEmail}")
+	public List<Note> getInvitationStatusByNoteIdAndGuest(@PathVariable(value="guestEmail") String guestEmail) {
+		return invitationService.getPendingInvitationsToNotesByGuest(guestEmail);
 	}
 }
