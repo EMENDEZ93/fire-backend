@@ -160,11 +160,10 @@ public class FriendServiceImpl implements FriendService {
 
 		if (friendDSLRepository.existFriendRecordRequesterAndRequested(requestedEmail, requesterEmail)) {
 			friendDSLRepository.deleteFriendRecordRequesterAndRequested(requestedEmail, requesterEmail);
-			deleteFriendRecord = true;
-		} else if (friendDSLRepository.existFriendRecordRequesterAndRequested(requesterEmail, requestedEmail)) {
 			friendDSLRepository.deleteFriendRecordRequesterAndRequested(requesterEmail, requestedEmail);
 			deleteFriendRecord = true;
 		}
+
 		return deleteFriendRecord;
 	}
 
