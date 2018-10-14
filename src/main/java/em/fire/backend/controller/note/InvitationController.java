@@ -52,7 +52,7 @@ public class InvitationController {
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/get/pending/invitations/to/notes/by/guest/{guestEmail}")
-	public List<Note> getInvitationStatusByNoteIdAndGuest(@PathVariable(value="guestEmail") String guestEmail) {
+	public List<Note> getPendingInvitationsToNotesByGuest(@PathVariable(value="guestEmail") String guestEmail) {
 		return invitationService.getPendingInvitationsToNotesByGuest(guestEmail);
 	}
 }
