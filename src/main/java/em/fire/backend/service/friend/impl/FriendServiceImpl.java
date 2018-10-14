@@ -100,7 +100,7 @@ public class FriendServiceImpl implements FriendService {
 		});
 		return users;
 	}
-	
+
 	@Override
 	public boolean existFriendRecordRequesterAndRequested(String requested, String requester) {
 		return friendDSLRepository.existFriendRecordRequesterAndRequested(requested, requester);
@@ -109,12 +109,14 @@ public class FriendServiceImpl implements FriendService {
 	@Override
 	public List<User> getAllFriendByRequesterEmailAndStatusIsTrue(String email) {
 		List<User> users = getFindByUserRequesterEmailAndStatusIsTrue(email);
-		return users;	
+		return users;
 	}
 
 	private List<User> getFindByUserRequesterEmailAndStatusIsTrue(String email) {
-		List<FriendEntity> friendEntitiesAsRequester = friendDSLRepository.getFindFriendRequestsByRequesterAndStatusIsTrue(email);
-		List<FriendEntity> friendEntitiesAsRequested = friendDSLRepository.getFindFriendRequestsByRequestedAndStatusIsTrue(email);
+		List<FriendEntity> friendEntitiesAsRequester = friendDSLRepository
+				.getFindFriendRequestsByRequesterAndStatusIsTrue(email);
+		List<FriendEntity> friendEntitiesAsRequested = friendDSLRepository
+				.getFindFriendRequestsByRequestedAndStatusIsTrue(email);
 		List<User> users = new ArrayList<>();
 
 		friendEntitiesAsRequester.stream().forEach(friendEntity -> {
@@ -127,17 +129,16 @@ public class FriendServiceImpl implements FriendService {
 			if (userDSLRepository.existsByEmail(friendEntity.getRequester())) {
 				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequester()));
 			}
-		});		
-		
+		});
+
 		return users;
 	}
 
 	@Override
 	public List<User> getAllFriendByRequesterEmailAndStatusIsFalse(String email) {
 		List<User> users = getFindByUserRequesterEmailAndStatusIsFalse(email);
-		return users;	
-	}	
-	
+		return users;
+	}
 
 	private List<User> getFindByUserRequesterEmailAndStatusIsFalse(String email) {
 		List<FriendEntity> friendEntities = friendDSLRepository.getFindFriendRequestsByRequesterAndStatusIsFalse(email);
@@ -148,20 +149,23 @@ public class FriendServiceImpl implements FriendService {
 				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequested()));
 			}
 		});
-		
+
 		return users;
 	}
 
-
-	
 	@Override
 	@Transactional
 	public boolean deleteFriendRecordRequesterAndRequested(String requestedEmail, String requesterEmail) {
-		if(friendDSLRepository.existFriendRecordRequesterAndRequested(requestedEmail, requesterEmail)) {
+		boolean deleteFriendRecord = false;
+
+		if (friendDSLRepository.existFriendRecordRequesterAndRequested(requestedEmail, requesterEmail)) {
 			friendDSLRepository.deleteFriendRecordRequesterAndRequested(requestedEmail, requesterEmail);
-			return true;
+			deleteFriendRecord = true;
+		} else if (friendDSLRepository.existFriendRecordRequesterAndRequested(requesterEmail, requestedEmail)) {
+			friendDSLRepository.deleteFriendRecordRequesterAndRequested(requesterEmail, requestedEmail);
+			deleteFriendRecord = true;
 		}
-		return false;
+		return deleteFriendRecord;
 	}
 
 	@Override
@@ -179,15 +183,16 @@ public class FriendServiceImpl implements FriendService {
 				users.add(userDSLRepository.getUserByEmail(friendEntity.getRequester()));
 			}
 		});
-		
+
 		return users;
 	}
 
 	@Override
 	public FriendEntity getChangeFriendRequestStatusByRequestedAndRequester(String requested, String requester) {
-		FriendEntity friend = friendDSLRepository.getChangeFriendRequestStatusByRequestedAndRequester(requested, requester);
+		FriendEntity friend = friendDSLRepository.getChangeFriendRequestStatusByRequestedAndRequester(requested,
+				requester);
 		friend.setRequestStatus(!friend.isRequestStatus());
 		return friendJpaRepository.save(friend);
 	}
-	
+
 }
