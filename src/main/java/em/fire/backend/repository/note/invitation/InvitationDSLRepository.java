@@ -17,7 +17,7 @@ import em.fire.backend.entity.note.invitation.QInvitationEntity;
 public class InvitationDSLRepository {
 
 	private QInvitationEntity qInvitationEntity = QInvitationEntity.invitationEntity;
-	 
+
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -30,14 +30,18 @@ public class InvitationDSLRepository {
 	public List<InvitationEntity> getPendingInvitationsToNotesByGuest(String guestEmail) {
 		JPAQuery<InvitationEntity> query = new JPAQuery<InvitationEntity>(entityManager);
 		return (List<InvitationEntity>) query.from(qInvitationEntity)
-					.where(qInvitationEntity.guest.eq(guestEmail).and(qInvitationEntity.status.isFalse())).fetch();
+				.where(qInvitationEntity.guest.eq(guestEmail).and(qInvitationEntity.status.isFalse())).fetch();
 	}
 
 	public List<String> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail) {
 		JPAQuery<InvitationEntity> query = new JPAQuery<InvitationEntity>(entityManager);
-		return query.select(qInvitationEntity.guest).from(qInvitationEntity).where(qInvitationEntity.idNote.eq(noteId).and(qInvitationEntity.host.eq(hostEmail))).fetch();
-	}  
+		return query.select(qInvitationEntity.guest).from(qInvitationEntity)
+				.where(qInvitationEntity.idNote.eq(noteId).and(qInvitationEntity.host.eq(hostEmail))).fetch();
+	}
 
-	
-	
+	public InvitationEntity getInvitationByNoteIdAndGuestEmail(Long noteId, String guestEmail) {
+		JPAQuery<InvitationEntity> query = new JPAQuery<InvitationEntity>(entityManager);
+		return query.from(qInvitationEntity).where(qInvitationEntity.idNote.eq(noteId).and(qInvitationEntity.guest.eq(guestEmail))).fetchOne();
+	}
+
 }

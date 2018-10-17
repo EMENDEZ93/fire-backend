@@ -81,4 +81,14 @@ public class InvitationServiceImpl implements InvitationService {
 		return users;
 	}
 
+	@Override
+	public InvitationEntity getChangeInvitationStatusByNodeIdAndGuestEmail(Long noteId, String guestEmail) {
+		InvitationEntity invitationEntity = invitationDSLRepository.getInvitationByNoteIdAndGuestEmail(noteId, guestEmail);
+		invitationEntity.setStatus(!invitationEntity.isStatus());
+		
+		return invitationJpaRepository.save(invitationEntity);
+	}
+
+	
+
 }

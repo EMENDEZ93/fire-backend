@@ -62,5 +62,11 @@ public class InvitationController {
 	public List<User> getAllGuestsByNoteIdAndHost(@PathVariable(value="noteId") Long noteId, @PathVariable(value="hostEmail") String hostEmail) {
 		return invitationService.getAllGuestsByNoteIdAndHost(noteId, hostEmail);
 	}
+
+	@CrossOrigin(origins = "*")
+	@GetMapping("/get/change/invitation/status/by/nodeid/{noteId}/and/guest/{guestEmail}")
+	public InvitationEntity getChangeInvitationStatusByNodeIdAndGuestEmail(@PathVariable(value="noteId") Long noteId, @PathVariable(value="guestEmail") String guestEmail) {
+		return invitationService.getChangeInvitationStatusByNodeIdAndGuestEmail(noteId, guestEmail);
+	}	
 	
 }

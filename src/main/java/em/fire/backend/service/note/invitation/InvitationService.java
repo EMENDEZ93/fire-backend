@@ -20,4 +20,6 @@ public interface InvitationService {
 	
 	public List<User> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail);
 	
+	public InvitationEntity getChangeInvitationStatusByNodeIdAndGuestEmail(Long noteId, String guestEmail);
+	
 }
