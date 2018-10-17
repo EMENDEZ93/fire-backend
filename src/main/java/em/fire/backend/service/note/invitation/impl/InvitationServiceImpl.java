@@ -58,7 +58,7 @@ public class InvitationServiceImpl implements InvitationService {
 	}
 
 	@Override
-	public boolean getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail) {
+	public InvitationEntity getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail) {
 		return invitationDSLRepository.getInvitationStatusByNoteIdAndGuest(noteId, guestEmail);
 	}
 

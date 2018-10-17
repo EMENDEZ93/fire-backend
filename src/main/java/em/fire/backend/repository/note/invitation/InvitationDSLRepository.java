@@ -21,9 +21,9 @@ public class InvitationDSLRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public boolean getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail) {
+	public InvitationEntity getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail) {
 		JPAQuery<InvitationEntity> query = new JPAQuery<InvitationEntity>(entityManager);
-		return query.select(qInvitationEntity.status).from(qInvitationEntity)
+		return query.select(qInvitationEntity).from(qInvitationEntity)
 				.where(qInvitationEntity.idNote.eq(noteId).and(qInvitationEntity.guest.eq(guestEmail))).fetchOne();
 	}
 

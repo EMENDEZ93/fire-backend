@@ -46,7 +46,7 @@ public class InvitationController {
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/get/invitation/status/by/noteid/{noteId}/and/guest/{guestEmail}")
-	public boolean getInvitationStatusByNoteIdAndGuest(@PathVariable(value="noteId") Long noteId,
+	public InvitationEntity getInvitationStatusByNoteIdAndGuest(@PathVariable(value="noteId") Long noteId,
 			@PathVariable(value="guestEmail") String guestEmail) {
 		return invitationService.getInvitationStatusByNoteIdAndGuest(noteId, guestEmail);
 	}

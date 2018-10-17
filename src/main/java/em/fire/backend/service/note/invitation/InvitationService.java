@@ -14,7 +14,7 @@ public interface InvitationService {
 	
 	public boolean deleteInvitation(Long id);
 	
-	public boolean getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail);
+	public InvitationEntity getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail);
 
 	public List<Note> getPendingInvitationsToNotesByGuest(String guestEmail);
 	
