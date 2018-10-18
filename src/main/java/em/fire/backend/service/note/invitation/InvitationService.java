@@ -2,9 +2,9 @@ package em.fire.backend.service.note.invitation;
 
 import java.util.List;
 
+import em.fire.backend.domain.user.Guest;
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
-import em.fire.backend.entity.user.User;
 
 public interface InvitationService {
 
@@ -14,11 +14,11 @@ public interface InvitationService {
 	
 	public boolean deleteInvitation(Long id);
 	
-	public InvitationEntity getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail);
+	public boolean getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail);
 
 	public List<Note> getPendingInvitationsToNotesByGuest(String guestEmail);
 	
-	public List<User> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail);
+	public List<Guest> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail);
 	
 	public InvitationEntity getChangeInvitationStatusByNodeIdAndGuestEmail(Long noteId, String guestEmail);
 	

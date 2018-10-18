@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import em.fire.backend.domain.user.Guest;
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
-import em.fire.backend.entity.user.User;
 import em.fire.backend.repository.note.invitation.InvitationDSLRepository;
 import em.fire.backend.repository.note.invitation.InvitationJpaRepository;
 import em.fire.backend.service.note.NoteService;
@@ -58,7 +58,7 @@ public class InvitationServiceImpl implements InvitationService {
 	}
 
 	@Override
-	public InvitationEntity getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail) {
+	public boolean getInvitationStatusByNoteIdAndGuest(Long noteId, String guestEmail) {
 		return invitationDSLRepository.getInvitationStatusByNoteIdAndGuest(noteId, guestEmail);
 	}
 
@@ -73,12 +73,12 @@ public class InvitationServiceImpl implements InvitationService {
 	}
 
 	@Override
-	public List<User> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail) {
-		List<User> users = new ArrayList<>();
+	public List<Guest> getAllGuestsByNoteIdAndHost(Long noteId, String hostEmail) {
+		List<Guest> guest = new ArrayList<>();
 		invitationDSLRepository.getAllGuestsByNoteIdAndHost(noteId, hostEmail).stream().forEach(guestEmail -> {
-			users.add( this.userService.getUserByEmail(guestEmail) );
+			guest.add( new Guest(this.userService.getUserByEmail(guestEmail), this.getInvitationStatusByNoteIdAndGuest(noteId, guestEmail) ) );
 		});
-		return users;
+		return guest;
 	}
 
 	@Override

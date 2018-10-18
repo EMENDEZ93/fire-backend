@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import em.fire.backend.domain.user.Guest;
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
-import em.fire.backend.entity.user.User;
 import em.fire.backend.service.note.invitation.InvitationService;
 
 @RestController
@@ -43,14 +43,7 @@ public class InvitationController {
 	public boolean deleteInvitation(@PathVariable(value="id") Long id) {
 		return invitationService.deleteInvitation(id);
 	}
-	
-	@CrossOrigin(origins = "*")
-	@GetMapping("/get/invitation/status/by/noteid/{noteId}/and/guest/{guestEmail}")
-	public InvitationEntity getInvitationStatusByNoteIdAndGuest(@PathVariable(value="noteId") Long noteId,
-			@PathVariable(value="guestEmail") String guestEmail) {
-		return invitationService.getInvitationStatusByNoteIdAndGuest(noteId, guestEmail);
-	}
-	
+		
 	@CrossOrigin(origins = "*")
 	@GetMapping("/get/pending/invitations/to/notes/by/guest/{guestEmail}")
 	public List<Note> getPendingInvitationsToNotesByGuest(@PathVariable(value="guestEmail") String guestEmail) {
@@ -59,7 +52,7 @@ public class InvitationController {
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("/get/all/guests/by/notesid/{noteId}/and/host/{hostEmail}")
-	public List<User> getAllGuestsByNoteIdAndHost(@PathVariable(value="noteId") Long noteId, @PathVariable(value="hostEmail") String hostEmail) {
+	public List<Guest> getAllGuestsByNoteIdAndHost(@PathVariable(value="noteId") Long noteId, @PathVariable(value="hostEmail") String hostEmail) {
 		return invitationService.getAllGuestsByNoteIdAndHost(noteId, hostEmail);
 	}
 
