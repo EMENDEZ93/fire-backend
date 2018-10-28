@@ -1,8 +1,8 @@
-package em.fire.backend.service.friend;
+package em.fire.backend.domain.friend;
 
 import java.util.List;
 
-import em.fire.backend.domain.friend.Friend;
+import em.fire.backend.model.friend.Friend;
 import em.fire.backend.entity.friend.FriendEntity;
 import em.fire.backend.entity.user.User;
 

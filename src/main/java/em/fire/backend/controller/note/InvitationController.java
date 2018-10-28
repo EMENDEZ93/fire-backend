@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import em.fire.backend.domain.user.Guest;
+import em.fire.backend.model.user.Guest;
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
-import em.fire.backend.service.note.invitation.InvitationService;
+import em.fire.backend.domain.note.invitation.InvitationService;
 
 @RestController
 public class InvitationController {

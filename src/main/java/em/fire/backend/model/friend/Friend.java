@@ -1,4 +1,4 @@
-package em.fire.backend.domain.friend;
+package em.fire.backend.model.friend;
 
 import java.io.Serializable;
 

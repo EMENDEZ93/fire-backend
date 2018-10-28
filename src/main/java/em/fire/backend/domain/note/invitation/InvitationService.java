@@ -1,8 +1,8 @@
-package em.fire.backend.service.note.invitation;
+package em.fire.backend.domain.note.invitation;
 
 import java.util.List;
 
-import em.fire.backend.domain.user.Guest;
+import em.fire.backend.model.user.Guest;
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
 

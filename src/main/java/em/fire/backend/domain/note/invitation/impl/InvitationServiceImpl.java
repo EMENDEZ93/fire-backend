@@ -1,4 +1,4 @@
-package em.fire.backend.service.note.invitation.impl;
+package em.fire.backend.domain.note.invitation.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import em.fire.backend.domain.user.Guest;
+import em.fire.backend.model.user.Guest;
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
 import em.fire.backend.repository.note.invitation.InvitationDSLRepository;
 import em.fire.backend.repository.note.invitation.InvitationJpaRepository;
-import em.fire.backend.service.note.NoteService;
-import em.fire.backend.service.note.invitation.InvitationService;
-import em.fire.backend.service.user.UserService;
+import em.fire.backend.domain.note.NoteService;
+import em.fire.backend.domain.note.invitation.InvitationService;
+import em.fire.backend.domain.user.UserService;
 
 @Service("invitationService")
 public class InvitationServiceImpl implements InvitationService {

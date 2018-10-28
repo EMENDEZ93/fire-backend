@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import em.fire.backend.domain.friend.Friend;
+import em.fire.backend.model.friend.Friend;
 import em.fire.backend.entity.friend.FriendEntity;
 import em.fire.backend.entity.user.User;
-import em.fire.backend.service.friend.FriendService;
+import em.fire.backend.domain.friend.FriendService;
 
 @RestController
 public class FriendController {

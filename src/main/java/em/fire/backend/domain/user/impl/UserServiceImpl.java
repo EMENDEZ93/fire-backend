@@ -1,4 +1,4 @@
-package em.fire.backend.service.user.impl;
+package em.fire.backend.domain.user.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import em.fire.backend.entity.user.User;
 import em.fire.backend.repository.UserDSLRepository;
 import em.fire.backend.repository.user.UserJpaRepository;
-import em.fire.backend.service.friend.FriendService;
-import em.fire.backend.service.user.UserService;
+import em.fire.backend.domain.friend.FriendService;
+import em.fire.backend.domain.user.UserService;
 
 @Service("userService")
 public class UserServiceImpl implements UserService {

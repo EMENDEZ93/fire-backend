@@ -1,4 +1,4 @@
-package em.fire.backend.service.note;
+package em.fire.backend.domain.note;
 
 import java.util.List;
 

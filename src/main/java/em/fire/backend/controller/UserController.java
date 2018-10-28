@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import em.fire.backend.entity.user.User;
-import em.fire.backend.service.user.UserService;
+import em.fire.backend.domain.user.UserService;
 
 @RestController
 public class UserController {

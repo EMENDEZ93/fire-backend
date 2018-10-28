@@ -1,4 +1,4 @@
-package em.fire.backend.domain.user;
+package em.fire.backend.model.user;
 
 import java.io.Serializable;
 

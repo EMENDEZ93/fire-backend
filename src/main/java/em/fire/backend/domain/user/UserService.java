@@ -1,4 +1,4 @@
-package em.fire.backend.service.user;
+package em.fire.backend.domain.user;
 
 import java.util.List;
 

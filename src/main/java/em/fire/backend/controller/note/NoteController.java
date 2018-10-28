@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import em.fire.backend.entity.note.Note;
-import em.fire.backend.service.note.NoteService;
+import em.fire.backend.domain.note.NoteService;
 
 @RestController
 public class NoteController {

@@ -1,4 +1,4 @@
-package em.fire.backend.service.note.impl;
+package em.fire.backend.domain.note.impl;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import em.fire.backend.entity.note.Note;
 import em.fire.backend.repository.note.NoteDSLRepository;
 import em.fire.backend.repository.note.NoteJpaRepository;
-import em.fire.backend.service.note.NoteService;
+import em.fire.backend.domain.note.NoteService;
 
 @Service("noteService")
 public class NoteServiceImpl implements NoteService {
