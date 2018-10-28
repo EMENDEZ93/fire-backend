@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import em.fire.backend.entity.user.User;
-import em.fire.backend.repository.UserDSLRepository;
+import em.fire.backend.repository.user.UserDSLRepository;
 import em.fire.backend.repository.user.UserJpaRepository;
 import em.fire.backend.domain.friend.FriendService;
 import em.fire.backend.domain.user.UserService;

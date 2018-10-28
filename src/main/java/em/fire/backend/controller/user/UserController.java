@@ -1,4 +1,4 @@
-package em.fire.backend.controller;
+package em.fire.backend.controller.user;
 
 import java.util.List;
 

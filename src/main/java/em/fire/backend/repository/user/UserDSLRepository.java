@@ -1,4 +1,4 @@
-package em.fire.backend.repository;
+package em.fire.backend.repository.user;
 
 import java.util.List;
 

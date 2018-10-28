@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import em.fire.backend.model.friend.Friend;
 import em.fire.backend.entity.friend.FriendEntity;
 import em.fire.backend.entity.user.User;
-import em.fire.backend.repository.UserDSLRepository;
 import em.fire.backend.repository.friend.FriendDSLRepository;
 import em.fire.backend.repository.friend.FriendJpaRepository;
+import em.fire.backend.repository.user.UserDSLRepository;
 import em.fire.backend.domain.friend.FriendService;
 
 @Service("friendService")
