@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import em.fire.backend.model.user.Guest;
-import em.fire.backend.entity.note.Note;
+import em.fire.backend.entity.note.NoteEntity;
 import em.fire.backend.entity.note.invitation.InvitationEntity;
 import em.fire.backend.repository.note.invitation.InvitationDSLRepository;
 import em.fire.backend.repository.note.invitation.InvitationJpaRepository;
@@ -63,8 +63,8 @@ public class InvitationServiceImpl implements InvitationService {
 	}
 
 	@Override
-	public List<Note> getPendingInvitationsToNotesByGuest(String guestEmail) {
-		List<Note> pendingInvitationsToNote = new ArrayList<>();
+	public List<NoteEntity> getPendingInvitationsToNotesByGuest(String guestEmail) {
+		List<NoteEntity> pendingInvitationsToNote = new ArrayList<>();
 		invitationDSLRepository.getPendingInvitationsToNotesByGuest(guestEmail).stream().forEach( pendingInvitationEntities -> { 
 			pendingInvitationsToNote.add( noteService.getNoteById( pendingInvitationEntities.getIdNote() ));
 		});

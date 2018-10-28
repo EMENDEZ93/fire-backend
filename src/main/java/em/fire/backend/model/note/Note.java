@@ -1,57 +1,44 @@
-package em.fire.backend.entity.note;
+package em.fire.backend.model.note;
 
 import java.io.Serializable;
 import java.time.LocalTime;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import em.fire.backend.entity.note.NoteEntity;
 
-@Entity
-@Table(name = "notes")
 public class Note implements Serializable {
 
-	private static final long serialVersionUID = -3396141139995405876L;
+	private static final long serialVersionUID = 336517817423294031L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
 	private Long Id;
 
-	@Temporal(TemporalType.DATE)
 	private Date startDate;
 
-	@JsonFormat(pattern = "HH:mm")
 	private LocalTime startTime;
 
-	@PrePersist
-	public void prePersist() {
-		startDate = new Date();
-		startTime = LocalTime.now();
-	}
-
-	@Temporal(TemporalType.DATE)
 	private Date endDate;
 
-	@JsonFormat(pattern = "HH:mm")
 	private LocalTime endTime;
 
-	@NotNull
 	private String title;
 
 	private String description;
 
-	@NotNull
 	private String idFirebase;
+
+	private boolean isInvited;
+
+	public Note(NoteEntity noteEntity, boolean isInvited) {
+		this.Id = noteEntity.getId();
+		this.startDate = noteEntity.getStartDate();
+		this.startTime = noteEntity.getStartTime();
+		this.endDate = noteEntity.getEndDate();
+		this.endTime = noteEntity.getEndTime();
+		this.title = noteEntity.getTitle();
+		this.description = noteEntity.getDescription();
+		this.idFirebase = noteEntity.getIdFirebase();
+		this.isInvited = isInvited;
+	}
 
 	public Long getId() {
 		return Id;
@@ -67,6 +54,14 @@ public class Note implements Serializable {
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public LocalTime getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(LocalTime startTime) {
+		this.startTime = startTime;
 	}
 
 	public Date getEndDate() {
@@ -109,12 +104,12 @@ public class Note implements Serializable {
 		this.idFirebase = idFirebase;
 	}
 
-	public LocalTime getStartTime() {
-		return startTime;
+	public boolean isInvited() {
+		return isInvited;
 	}
 
-	public void setStartTime(LocalTime startTime) {
-		this.startTime = startTime;
+	public void setInvited(boolean isInvited) {
+		this.isInvited = isInvited;
 	}
 
 }

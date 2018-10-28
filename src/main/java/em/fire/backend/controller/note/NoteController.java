@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import em.fire.backend.entity.note.Note;
+import em.fire.backend.entity.note.NoteEntity;
+import em.fire.backend.model.note.Note;
 import em.fire.backend.domain.note.NoteService;
 
 @RestController
@@ -25,13 +26,13 @@ public class NoteController {
 	
 	@CrossOrigin(origins = "*")
 	@PostMapping("/note/save")
-	public boolean createUser(@Valid @RequestBody Note note) {
+	public boolean createUser(@Valid @RequestBody NoteEntity note) {
 		return noteService.createNote(note);
 	}
 
 	@CrossOrigin(origins = "*")
 	@GetMapping("/notes")
-	public List<Note> allNotes() {
+	public List<NoteEntity> allNotes() {
 		return noteService.findAll();
 	}	
 	
@@ -43,7 +44,7 @@ public class NoteController {
 	
 	@CrossOrigin(origins = "*")
 	@GetMapping("/note/{id}")
-	public Note getNote(@PathVariable(value="id") Long id) {
+	public NoteEntity getNote(@PathVariable(value="id") Long id) {
 		return noteService.getNoteById(id);
 	}
 
@@ -51,5 +52,11 @@ public class NoteController {
 	@GetMapping("/notes/user/{idFirebase}")
 	public List<Note> allNotesByIdFirebase(@PathVariable(value="idFirebase") String idFirebase) {
 		return noteService.getNotesByIdFirebase(idFirebase);
+	}
+	
+	@CrossOrigin(origins = "*")
+	@GetMapping("/get/all/foreign/notes/by/email/guest/{emailGuest}")
+	public List<Note> allForeignNotesByEmailGuest(@PathVariable(value="emailGuest") String emailGuest) {
+		return noteService.allForeignNotesByEmailGuest(emailGuest);
 	}
 }
