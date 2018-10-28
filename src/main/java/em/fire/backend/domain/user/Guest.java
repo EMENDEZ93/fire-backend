@@ -18,7 +18,7 @@ public class Guest implements Serializable {
 
 	public Guest(User user, boolean status) {
 		this.id = user.getId();
-		this.email = user.getName();
+		this.name = user.getName();
 		this.email = user.getEmail();
 		this.status = status;
 	}
